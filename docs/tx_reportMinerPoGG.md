@@ -29,7 +29,25 @@ Content-Type: application/json
     "jsonrpc": "2.0",
     "id": 1,
     "method": "tx_reportMinerPoGG",
-    "params": {}
+    "params": {
+		  "version": 1,
+		  "address": "0x1134e1FEcA30FE9EAF77222b30C6CC571b33CD52",
+		  "dataList": [
+		    "010064abb9db0000000069780000000016820620",
+		    "010064abbb070000000069780000000016820620",
+		    "010064abbc330000000115580000000016820620",
+		    "010064abbd5f0000000069780000000016825440",
+		    "010064abbe8b0000000069780000000016825440",
+		    "010064abbfb70000000121100000000016825440",
+		    "010064abc0e30000000121100000000016825440",
+		    "010064abc20f00000000fde80000000016825440",
+		    "010064abc33b00000000b3b0000000001682a260",
+		    "010064abc46700000000fa00000000001682a260",
+		    "010064abc59300000000f618000000001682a260",
+		    "010064abc6bf00000000cb20000000001682a260"
+		  ],
+		  "signature": "2rj9DbrxzGniLcYL9GUfsVSTKSS3muEh8UU4n9E46Mm6oMDApdTHW7WJfaMMhqwNwZmhPs6DQNacrBnwpQRpCxfa8"
+		}
 }
 ```
 
@@ -57,36 +75,6 @@ The data hex string length is `40`, it is combine with 4 parts:
 | `12~23` | `6` bytes length, real time power(unit=`Milliwatts`) of the miner as `HexString`, for example: `000000006978`                                          |
 | `24~39` | `8` bytes length, cumulative energy(unit=`Milliwatt Hours`) generated of the miner as `HexString`, for example: `0000000016820620`                     |
 
-
-### BODY EXAMPLE
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "tx_reportMinerPoGG",
-    "params": {
-		  "version": 1,
-		  "address": "0x1134e1FEcA30FE9EAF77222b30C6CC571b33CD52",
-		  "dataList": [
-		    "010064abb9db0000000069780000000016820620",
-		    "010064abbb070000000069780000000016820620",
-		    "010064abbc330000000115580000000016820620",
-		    "010064abbd5f0000000069780000000016825440",
-		    "010064abbe8b0000000069780000000016825440",
-		    "010064abbfb70000000121100000000016825440",
-		    "010064abc0e30000000121100000000016825440",
-		    "010064abc20f00000000fde80000000016825440",
-		    "010064abc33b00000000b3b0000000001682a260",
-		    "010064abc46700000000fa00000000001682a260",
-		    "010064abc59300000000f618000000001682a260",
-		    "010064abc6bf00000000cb20000000001682a260"
-		  ],
-		  "signature": "2rj9DbrxzGniLcYL9GUfsVSTKSS3muEh8UU4n9E46Mm6oMDApdTHW7WJfaMMhqwNwZmhPs6DQNacrBnwpQRpCxfa8"
-		}
-}
-
-```
 
 
 
