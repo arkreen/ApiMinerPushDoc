@@ -1,4 +1,4 @@
-# ApiMinerDoc
+# ApiMinerPushDoc
 
 There are two Proof of Green-energy Generation(PoGG) data report modes in Arkreen API Miner:
 * Push Mode: User push PoGG data by themself, the PoGG data must be composed according to the PoGG report rules of Arkreen Network.
@@ -25,6 +25,7 @@ If you want to became to an owner of Arkreen API Miner, you need to satify the f
     * Arkreen only accept business partner to registering API Miner, so there are no dApps to register API miner.
 * Contact [Arkreen Network](info@arkreen.com) to register the generated API miner and pay the registration fee
     * User must pay the fee for API Miner registration.
+    * The miner address is the required parameter to register, private key is needless.
 * Using Arkreen Console dApp to onboarding API miner
     * User needs to prepare the required properties for onboarding API Miner, the required properties include:
         * The capacity of your power plant, for example: 5000, the unit is `Wh`(Watt Hour)
@@ -33,10 +34,10 @@ If you want to became to an owner of Arkreen API Miner, you need to satify the f
         * Test only environment: [Arkreen Console](https://pre.console.arkreen.work/)
         * Production environment: [Arkreen Console](https://testconsole.arkreen.com/)
 * Using the Arkreen JSON RPC API to report PoGG data to Arkreen Network periodly
-    * To get the maxium reward, API miner must report the PoGG data every hour and each PoGG report includes 12 sampled data(sampled five minutes interval)
+    * To get the maxium reward, API miner must report the PoGG data every hour and each PoGG report includes 12 green generation samples(a sample five minutes interval)
     * For more information of PoGG, please refer to: [Proof of Green-energy Generation and Reward Distribution](https://docs.arkreen.com/technical-details/proof-of-green-energy-generation).
     * For more information of PoGG data, please refere to: [tx_reportMinerPoGG](./docs/tx_reportMinerPoGG.md)
-    
+
 
 
 
@@ -46,3 +47,33 @@ If you want to became to an owner of Arkreen API Miner, you need to satify the f
 | -------------------------------------------------- | ---------------------------------------------------------------- |
 | [tx_reportMinerPoGG](./docs/tx_reportMinerPoGG.md) | JSON RPC API that be used to report PoGG data to Arkreen Network |
 
+
+
+
+# Sample Code
+
+This sample code will send the random generated PoGG report data to Arkreen Network testnet.
+
+## Prepare the environment
+
+```
+git clone git@github.com:arkreen/ApiMinerPushDoc.git
+cd ApiMinerPushDoc/sample
+npm install
+
+```
+
+## Config the API Miner
+
+* Using any text editor to open miner.js file
+* Change the minerAddress variable to your miner address
+* Change the minerPrivateKey variable to your miner private key
+
+
+## Run the API Miner
+
+```
+node app.js
+```
+
+When the application running, if the miner has not any PoGG report, the application will report the first PoGG data with 1 green generation sample, after that, the application will report PoGG data to Arkreen Network every hour with 12 green generation sample.
