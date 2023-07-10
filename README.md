@@ -50,3 +50,4 @@ If you want to became to an owner of Arkreen API Miner, you need to satify the f
 | [tx_reportMinerPoGG](./docs/tx_reportMinerPoGG.md) | JSON RPC API that be used to report PoGG data to Arkreen Network |
 
 
+

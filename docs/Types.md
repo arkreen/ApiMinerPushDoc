@@ -34,6 +34,16 @@ Can be used to represent any number, for example:
 
 
 
+###  HexString
+
+`HexString` is used to represent a binary data, prefix with "`0x`", its length can be odd, for example:
+
+```javascript
+"0x1234567890abcde"
+```
+
+
+
 
 ###  Array 
 

@@ -4,15 +4,17 @@ The transaction that a miner used to report energy generation information to Ark
 
 
 
-### REQUEST
+## REQUEST
+
+### METHOD
 
 ```
-POST https://api.arkreen.com/v1
+POST
 ```
 
 
 
-##### HEADERS
+### HEADERS
 
 ```
 Content-Type: application/json
@@ -20,7 +22,7 @@ Content-Type: application/json
 
 
 
-##### BODY
+### BODY
 
 ```json
 {
@@ -33,7 +35,7 @@ Content-Type: application/json
 
 
 
-##### `params`
+#### `params`
 
 | Field       | Exists     | Type                                              | Description                                                  |
 | ----------- | ---------- | ------------------------------------------------- | ------------------------------------------------------------ |
@@ -44,37 +46,57 @@ Content-Type: application/json
 
 
 
-##### `data`
+#### `data`
 
 The data hex string length is `40`, it is combine with 4 parts:
 
-| Range   | Description                                                  |
-| ------- | ------------------------------------------------------------ |
-| `0~1`   | Version of the sampleded data                                |
-| `2~11`  | Sampling timestamp, escaped seconds from `1970/01/01 00:00:00 UTC` |
-| `12~23` | Real time power of the miner                                 |
-| `24~39` | Cumulative energy generated of the miner                     |
+| Range   | Description                                                                                                                                      |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `0~1`   | `1` byte length, version of the sampleded data, fixed to `01`                                                                                      |
+| `2~11`  | `5` bytes length, sampling timestamp, escaped seconds from `1970/01/01 00:00:00 UTC`, for example: `0064abb9db`                                     |
+| `12~23` | `6` bytes length, real time power(unit=`Milliwatts`) of the miner as `HexString`, for example: `000000006978`                                          |
+| `24~39` | `8` bytes length, cumulative energy(unit=`Milliwatt Hours`) generated of the miner as `HexString`, for example: `0000000016820620`                     |
 
 
+### BODY EXAMPLE
 
-##### EXAMPLE
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tx_reportMinerPoGG",
+    "params": {
+		  "version": 1,
+		  "address": "0x1134e1FEcA30FE9EAF77222b30C6CC571b33CD52",
+		  "dataList": [
+		    "010064abb9db0000000069780000000016820620",
+		    "010064abbb070000000069780000000016820620",
+		    "010064abbc330000000115580000000016820620",
+		    "010064abbd5f0000000069780000000016825440",
+		    "010064abbe8b0000000069780000000016825440",
+		    "010064abbfb70000000121100000000016825440",
+		    "010064abc0e30000000121100000000016825440",
+		    "010064abc20f00000000fde80000000016825440",
+		    "010064abc33b00000000b3b0000000001682a260",
+		    "010064abc46700000000fa00000000001682a260",
+		    "010064abc59300000000f618000000001682a260",
+		    "010064abc6bf00000000cb20000000001682a260"
+		  ],
+		  "signature": "2rj9DbrxzGniLcYL9GUfsVSTKSS3muEh8UU4n9E46Mm6oMDApdTHW7WJfaMMhqwNwZmhPs6DQNacrBnwpQRpCxfa8"
+		}
+}
 
-```shell
-curl https://api.arkreen.com/v1 \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"tx_reportMinerPoGG","params":{},"id":1}'
 ```
 
 
 
-### RESPONSE
+## RESPONSE
 
 
 
-#### SUCCESS
+### SUCCESS
 
-##### BODY
+#### BODY
 
 ```json
 {
@@ -86,9 +108,9 @@ curl https://api.arkreen.com/v1 \
 
 
 
-#### FAILURE
+### FAILURE
 
-##### BODY
+#### BODY
 
 ```json
 {
@@ -103,7 +125,7 @@ curl https://api.arkreen.com/v1 \
 
 
 
-##### CODE
+#### ERROR CODE
 
 The following error codes are specific to current method:
 
