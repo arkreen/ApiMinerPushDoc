@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "ethers": "^6.6.2",
-    "json-stringify-sort": "^1.0.1",
-    "world-cities-json": "^1.0.1"
+    "json-stringify-sort": "^1.0.1"
   }
 }
