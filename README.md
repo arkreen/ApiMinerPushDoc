@@ -33,9 +33,6 @@ If you want to become to a vender of Arkreen API Miner, you need to satisfy the 
     * For more information of PoGG data, please refer to: [tx_reportMinerPoGG](./docs/tx_reportMinerPoGG.md)
     * For more information of PoGG, please refer to: [Proof of Green-energy Generation and Reward Distribution](https://docs.arkreen.com/technical-details/proof-of-green-energy-generation).
 
-    "ethers": "^6.6.2",
-    "json-stringify-sort": "^1.0.1",
-    "world-cities-json": "^1.0.1"
 
 
 # JSON RPC APIs for API Miner
