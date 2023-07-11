@@ -3,10 +3,10 @@
 
 
 //your API Miner address
-const minerAddress = "0x8a86F83aB38592B6A06e5005F0584C1a7Fda6773";
+const minerAddress = "0x0000000000000000000000000000000000000000";
 
 //your API Miner private key
-const minerPrivateKey = "0x98d7581dcf8660fc378afd43f3e5eba0325d6be8164eb8251572c860377b8272";
+const minerPrivateKey = "0x0000000000000000000000000000000000000000000000000000000000000000";
 
 //your API Miner capacity
 const capacity = 5000;
