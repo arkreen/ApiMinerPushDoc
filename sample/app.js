@@ -46,7 +46,8 @@ async function generateReport(address, first) {
 
   var now = Math.round(Date.now() / 1000);
   var minerData = await getMinerData(address);
-  var energy = parseInt(minerData.totalEnergyGeneration);
+  var totalEnergyGeneration = minerData.totalEnergyGeneration;//unit=Milliwatt Hours
+  var energy = parseInt(totalEnergyGeneration);//unit=Milliwatt Hours
   var dataList = [];
   var dataCount = 12;
 
@@ -57,11 +58,11 @@ async function generateReport(address, first) {
   for (var i = 0; i < dataCount; i++) {
     var sampling_time = now - ((i + 1) * 5 * 60);
     var power = Math.round(Math.random() * Miner.capacity * 0.5);
-    energy = Math.round(energy + (power * 1000 * (5 * 30 / 3600)));
+    energy = Math.round(energy / 1000 + (power * (5 * 30 / 3600)));
     var data = {
       sampling_time: sampling_time,
-      power: power,
-      energy: energy
+      power: power,//unit=Watt
+      energy: energy//unit=Watt Hours
     };
 
     dataList.push(compactData(data));
