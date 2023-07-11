@@ -1,0 +1,16 @@
+{
+  "name": "sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^6.6.2",
+    "json-stringify-sort": "^1.0.1",
+    "world-cities-json": "^1.0.1"
+  }
+}

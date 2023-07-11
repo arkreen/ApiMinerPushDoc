@@ -1,4 +1,27 @@
 // miner.js
 
 
-//TBD
+
+//your API Miner address
+const minerAddress = "0x8a86F83aB38592B6A06e5005F0584C1a7Fda6773";
+
+//your API Miner private key
+const minerPrivateKey = "0x98d7581dcf8660fc378afd43f3e5eba0325d6be8164eb8251572c860377b8272";
+
+//your API Miner capacity
+const capacity = 5000;
+
+//the country and city of your API miner location
+const locationCountry = "USA";
+const locationCity = "Los Angeles";
+
+
+const interfaces = {
+  minerAddress: minerAddress,
+  minerPrivateKey: minerPrivateKey,
+  capacity: capacity,
+  locationCountry: locationCountry,
+  locationCity: locationCity,
+};
+
+module.exports = interfaces;
