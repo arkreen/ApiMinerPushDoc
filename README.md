@@ -58,7 +58,6 @@ This sample code will send the randomly generated PoGG report data to Arkreen Ne
 git clone git@github.com:arkreen/ApiMinerPushDoc.git
 cd ApiMinerPushDoc/sample
 npm install
-
 ```
 
 ## Config the API Miner

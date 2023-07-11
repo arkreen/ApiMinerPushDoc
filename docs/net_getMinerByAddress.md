@@ -40,7 +40,7 @@ The `params` is a `JavaScript` object that has the following fields:
 
 | Field     | Exists     | Type      | Description                       |
 | --------- | ---------- | --------- | --------------------------------- |
-| `address` | *required* | [`Address`](../Common/Types.md#Address) | Standard Ethereum account address |
+| `address` | *required* | [`Address`](./Types.md#Address) | Standard Ethereum account address |
 
 
 
@@ -75,7 +75,7 @@ The `result` is a JavaScript object that includes the miner information:
 | `address`   | *required* | [`Address`](./Types.md#Address)           | The miner address                 |
 | `ownerAddress`   | *required* | [`Address`](./Types.md#Address)           | The owner address of miner                |
 | `capacity`  | *required* | [`Number`](./Types.md#Number) | The capacity of miner                               |
-| `totalEnergyGeneration`  | *required* | [`String`](../Common/Types.md#String) | The total energy generation of miner            |
+| `totalEnergyGeneration`  | *required* | String | The total energy generation of miner            |
 
 
 
