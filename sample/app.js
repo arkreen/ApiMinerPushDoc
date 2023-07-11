@@ -44,10 +44,13 @@ async function generateReport(address, first) {
     address: address
   };
 
-  var now = Math.round(Date.now() / 1000);
+  //get the latest total energy generation of the miner from Arkreen Network
+  //vender can cache the data locally
   var minerData = await getMinerData(address);
   var totalEnergyGeneration = minerData.totalEnergyGeneration;//unit=Milliwatt Hours
   var energy = parseInt(totalEnergyGeneration);//unit=Milliwatt Hours
+
+  var now = Math.round(Date.now() / 1000);
   var dataList = [];
   var dataCount = 12;
 
@@ -59,13 +62,16 @@ async function generateReport(address, first) {
     var sampling_time = now - ((i + 1) * 5 * 60);
     var power = Math.round(Math.random() * Miner.capacity * 0.5);
     energy = Math.round(energy / 1000 + (power * (5 * 30 / 3600)));
+
     var data = {
-      sampling_time: sampling_time,
+      sampling_time: sampling_time,//UTC seconds from 1970/01/01 00:00:00 
       power: power,//unit=Watt
       energy: energy//unit=Watt Hours
     };
 
-    dataList.push(compactData(data));
+    //compact the data to short format
+    var cd = compactData(data);
+    dataList.push(cd);
   }
 
   report.dataList = dataList;
@@ -127,6 +133,7 @@ async function sendPoggReportTx(tx) {
 }
 
 function buildPoggReportTx(report, privateKey) {
+  //the order of properties of PoGG report to be digested
   const opts = { 
     fieldSorts: [
       'version', 
@@ -135,13 +142,18 @@ function buildPoggReportTx(report, privateKey) {
     ]
   };
 
-  const hash = sha256Hash(report, opts);
-  const signingKey = new ethers.SigningKey(privateKey);
-  const signature = signingKey.sign(hash);
-  const rawSignature = toArkreenSignature(signature);
-  const buffer = ethers.getBytes(rawSignature);
+  //signing the PoGG report transaction with miner private key
+  var hash = sha256Hash(report, opts);
+  var signingKey = new ethers.SigningKey(privateKey);
+  var signature = signingKey.sign(hash);
+
+  //convert the signature to Arkreen signature and Base58 encoded
+  var rawSignature = toArkreenSignature(signature);
+  var buffer = ethers.getBytes(rawSignature);
+  var signature = ethers.encodeBase58(buffer);
   
-  report.signature = ethers.encodeBase58(buffer);
+  //set the signature of PoGG report transaction
+  report.signature = signature;
   return report;
 }
 
@@ -150,12 +162,22 @@ function buildPoggReportTx(report, privateKey) {
   const reporter = async function(first) {
     var address = Miner.minerAddress;
     var privateKey = Miner.minerPrivateKey;
+
+    //generate PoGG report data
+    //first == true, the first report
+    //first == false, another report
     var report = await generateReport(address, first);
-    console.log("report", report);
+    console.log("PoGG report data", report);
+
+    //build PoGG report transaction and sign it with miner private key
     var tx = buildPoggReportTx(report, privateKey);
-    console.log("tx", tx);
-    var result = await sendPoggReportTx(tx);
-    console.log("result", result);
+    console.log("PoGG transaction", tx);
+
+    //send the PoGG report to Arkreen Network
+    var hash = await sendPoggReportTx(tx);
+    console.log("transaction hash", hash);
+
+    return report;
   };
 
   //send the first report when the miner online
