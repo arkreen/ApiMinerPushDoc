@@ -51,6 +51,9 @@ If you want to become to a vender of Arkreen API Miner, you need to satisfy the 
 
 This sample code will send the randomly generated PoGG report data to Arkreen Network.
 
+The running environment of the sample is `Nodejs`, please goto [Nodejs Official Website](https://nodejs.org/en) to install.
+
+
 ## Prepare the environment
 
 ```
