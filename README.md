@@ -75,3 +75,11 @@ node app.js
 When the application is running firstly, the miner has not made any PoGG report, the application will report the first PoGG data with `1` green generation sample, after that, the application will report PoGG data to Arkreen Network every hour with `12` green generation sample.
 
 
+# FAQ
+
+* How to check the PoGG report data that has been sent to Arkreen Network?
+    - Open the [Arkreen Console Miners](https://pre.explorer.arkreen.work/miners) web page
+    - Enter the target miner address in search box top of window and search
+
+
+
