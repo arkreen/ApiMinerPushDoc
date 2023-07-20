@@ -75,7 +75,7 @@ npm install
 node app.js
 ```
 
-When the application is running firstly, the miner has not made any PoGG report, the application will report the first PoGG data with `1` green generation sample, after that, the application will report PoGG data to Arkreen Network every hour with `12` green generation sample.
+When the application is running firstly, the miner has not made any PoGG report, the application will report the first PoGG data with `1` green generation sample(real time power=0W, total energy generated=0Wh), after that, the application will report PoGG data to Arkreen Network every hour with `12` green generation samples.
 
 
 # FAQ
